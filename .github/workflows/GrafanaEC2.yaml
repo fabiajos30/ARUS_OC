@@ -40,3 +40,4 @@ jobs:
               sudo apt update
               sudo apt install grafana
               sudo systemctl start grafana-server
+              '
