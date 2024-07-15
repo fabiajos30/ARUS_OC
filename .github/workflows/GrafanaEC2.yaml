@@ -31,6 +31,6 @@ jobs:
           HOSTNAME: "3.145.111.135"
           USER_NAME: ${{ secrets.USER_NAME }}
         run: |
-          echo "$HOSTNAME"
           echo "$USER_NAME"
+          echo "$HOSTNAME"
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key         
