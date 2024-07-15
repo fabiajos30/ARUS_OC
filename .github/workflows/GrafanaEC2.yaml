@@ -30,7 +30,4 @@ jobs:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           HOSTNAME: "3.145.111.135"
           USER_NAME: ${{ secrets.USER_NAME }}
-        run: |
-          echo "$USER_NAME"
-          echo "$HOSTNAME"
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key         
+        run: echo "${{ secrets.SSH_PRIVATE_KEY }}"
