@@ -1,15 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+name: EC2 Deploy
 on:
+  # Triggers the workflow on push or pull request events but only for the "trunk" branch
+  push:
+    branches: [ "trunk" ]
+  pull_request:
+    branches: [ "trunk" ]
   workflow_dispatch:
     inputs:
-      build_id:
+      Instance-ID:
         required: true
         type: string
-      deploy_target:
+      Region:
         required: true
-        type: string
-      perform_deploy:
-        required: true
-        type: boolean
+        type: choice
+        options:
+        - us-east-2
+        - us-east-1
+        - us-west-1	
+        - us-west-2
+#      deploy_target:
+#        required: true
+#        type: string
+#      perform_deploy:
+#        required: true
+#        type: boolean
 
 jobs:
   deploy:
