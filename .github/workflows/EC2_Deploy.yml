@@ -8,9 +8,15 @@ on:
     branches: [ "trunk" ]
   workflow_dispatch:
     inputs:
-      Instance-ID:
+#      Instance-ID:
+#        required: true
+#        type: string
+      InstanceType:
         required: true
-        type: string
+        type: choice
+        options:
+        - t2.nano
+        - t2.micro
       Region:
         required: true
         type: choice
@@ -27,11 +33,23 @@ on:
 #        type: boolean
 
 jobs:
-  deploy:
+  LaunchInstance:
     runs-on: ubuntu-latest
     # if: ${{ inputs.perform_deploy }}
     steps:
-      - name: Run EC2 Instance
+      - name: Checkout código
+        uses: actions/checkout@v4
+      - name: Configurar AWS CLI
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESSKEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRETKEY }}
+          aws-region: us-east-2
+      - name: Listar Instance
+        run: aws ec2 describe-instances
+      - name: Lanzar Instancia EC2
+        run: aws ec2 run-instances --image-id ami-0862be96e41dcbf74 --instance-type ${{ inputs.InstanceType }} --region ${{ inputs.Region }}
+      - name: Run EC2 Insta
         run: echo "Deploying build:${{ inputs.Region }} to target:${{ inputs.Instance-ID }}"
       - name: TestSecretEnvironment
         run: echo "Prueba secretos:${{ secrets.AWS_ACCESSKEY }}"
