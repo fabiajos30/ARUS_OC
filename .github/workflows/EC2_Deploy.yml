@@ -34,5 +34,5 @@ jobs:
       - name: Run EC2 Instance
         run: echo "Deploying build:${{ inputs.Region }} to target:${{ inputs.Instance-ID }}"
       - name: TestSecretEnvironment
-        run: echo "Prueba secretos:${{ secrets.env.3436429566.AWS_ACCESSKEY }}"
+        run: echo "Prueba secretos:${{ secrets.env.Ambiente QA.AWS_ACCESSKEY }}"
         
