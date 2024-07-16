@@ -29,8 +29,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ inputs.perform_deploy }}
+    # if: ${{ inputs.perform_deploy }}
     steps:
-      - name: Deploy build to target
-        run: echo "Deploying build:${{ inputs.build_id }} to target:${{ inputs.deploy_target }}"
+      - name: Run EC2 Instance
+        run: echo "Deploying build:${{ inputs.Region }} to target:${{ inputs.Instance-ID }}"
         
